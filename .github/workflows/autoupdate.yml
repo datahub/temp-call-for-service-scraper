@@ -30,7 +30,7 @@ jobs:
             python -m pip install --upgrade pip
             pip install requests beautifulsoup4 pandas datetime
 
-      - name: Debugging: List installed packages
+      - name: List installed packages
         run: pip list
 
       # MAKE SURE YOUR SCRAPER FILENAME MATCHES THE FILENAME HERE!!
