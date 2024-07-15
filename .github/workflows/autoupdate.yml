@@ -34,7 +34,7 @@ jobs:
         run: pip list
 
       - name: Convert jupyter notebook to python script
-        run: jupyter nbconvert --to script scrape_heroku.ipynb
+        run: papermill scrape_heroku.ipynb scrape_heroku.py
 
       - name: Check if the converted Python script exists
         run: ls -al scrape_heroku.py
