@@ -33,6 +33,15 @@ jobs:
       - name: List installed packages
         run: pip list
 
+      - name: Convert jupyter notebook to python script
+        run: jupyter nbconvert --to script scrape_heroku.ipynb
+
+      - name: Check if the converted Python script exists
+        run: ls -al scrape_heroku.py
+
+      - name: Run the converted Python script
+        run: python scrape_heroku.py
+
       # MAKE SURE YOUR SCRAPER FILENAME MATCHES THE FILENAME HERE!!
       - name: Run the python scraper script
         run: python scrape_heroku.ipynb
