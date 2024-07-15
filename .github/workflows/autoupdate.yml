@@ -21,11 +21,17 @@ jobs:
       # Set up R
       - name: Set up python
         uses: actions/setup-python@v2
+
       - name: Print directory
         run: pwd && ls
 
       - name: Install necessary python packages
-        run: pip install requests beautifulsoup4 pandas datetime
+        run: |
+            python -m pip install --upgrade pip
+            pip install requests beautifulsoup4 pandas datetime
+
+      - name: Debugging: List installed packages
+        run: pip list
 
       # MAKE SURE YOUR SCRAPER FILENAME MATCHES THE FILENAME HERE!!
       - name: Run the python scraper script
@@ -37,5 +43,5 @@ jobs:
           git config user.email "actions@user.noreply.github.com"
           git add -A
           timestamp=$(date -u)
-          git commit -m "Latest data: ${timestamp}" || exit 0
-          git push
+          git commit -m "Latest data: ${timestamp}" || echo "No changes to commit"
+          git push || echo "nothing to push"
