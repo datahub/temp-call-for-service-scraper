@@ -21,17 +21,19 @@ jobs:
 
       - name: Set up python
         uses: actions/setup-python@v5
+        with:
+            python-version: '3.11'
 
       - name: Install necessary python packages
         run: |
-            python3 -m pip install --upgrade pip
+            python -m pip install --upgrade pip
             pip install requests beautifulsoup4 pandas datetime nbconvert
 
       - name: Convert notebook to Python script
         run: jupyter nbconvert --to script scrape_heroku.ipynb
 
       - name: Run the converted Python script
-        run: python3 scrape_heroku.py
+        run: python scrape_heroku.py
 
       # I just stole the rest of this code so don't ask me questions about it
       - name: Commit and push if content changed
