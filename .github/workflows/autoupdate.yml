@@ -25,7 +25,7 @@ jobs:
       - name: Install necessary python packages
         run: |
             python3 -m pip install --upgrade pip
-            pip install requests beautifulsoup4 pandas datetime nbconvert lmxl
+            pip install requests beautifulsoup4 pandas datetime nbconvert
 
       - name: Convert notebook to Python script
         run: jupyter nbconvert --to script scrape_heroku.ipynb
