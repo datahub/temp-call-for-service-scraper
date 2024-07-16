@@ -6,8 +6,8 @@ on:
   # workflow_dispatch means "I can click a button and force it to run"
   workflow_dispatch:
   # schedule/cron means "on a set schedule"
-  schedule:
-    - cron: "* */2 * * *"
+  # schedule:
+  #   - cron: "* */2 * * *"
 jobs:
   scrape:
     # For some reason, we run love versions of linux
@@ -18,7 +18,7 @@ jobs:
         uses: actions/checkout@v2
         with:
           ref: ${{ github.ref }}
-      # Set up R
+
       - name: Set up python
         uses: actions/setup-python@v2
 
@@ -28,7 +28,7 @@ jobs:
       - name: Install necessary python packages
         run: |
             python -m pip install --upgrade pip
-            pip install requests beautifulsoup4 pandas datetime
+            pip install requests beautifulsoup4 pandas datetime nbconvert
 
       - name: List installed packages
         run: pip list
@@ -39,12 +39,12 @@ jobs:
       - name: Check if the converted Python script exists
         run: ls -al scrape_heroku.py
 
+      - name: Convert notebook to Python script
+        run: jupyter nbconvert --to script scrape_heroku.ipynb
+
       - name: Run the converted Python script
         run: python scrape_heroku.py
 
-      # MAKE SURE YOUR SCRAPER FILENAME MATCHES THE FILENAME HERE!!
-      - name: Run the python scraper script
-        run: python scrape_heroku.ipynb
       # I just stole the rest of this code so don't ask me questions about it
       - name: Commit and push if content changed
         run: |-
