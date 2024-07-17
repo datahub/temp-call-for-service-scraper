@@ -1,4 +1,5 @@
 import pandas as pd
+from io import StringIO
 import requests
 from bs4 import BeautifulSoup
 import datetime as dt
@@ -10,7 +11,7 @@ def get_calllog(date):
         response = requests.get(f"https://mke-police.herokuapp.com/?date={date}")
     content = response.content
     soup = BeautifulSoup(content, "html.parser")
-    df_date = pd.read_html(str(soup))[0]
+    df_date = pd.read_html(StringIO(str(soup)))[0]
     df_date["date"] = date
     print(df_date)
     return df_date
