@@ -29,11 +29,12 @@ jobs:
             python -m pip install --upgrade pip
             pip install requests beautifulsoup4 pandas datetime nbconvert lxml
 
-      - name: Convert notebook to Python script
-        run: jupyter nbconvert --to script scrape_heroku.ipynb
-
-      - name: Run the converted Python script
-        run: python scrape_heroku.py
+      - name: Run the Python scripts
+        run: |
+            python scrape-24.py
+            python scrape-23.py
+            python scrape-22.py
+            python scrape-21.py
 
       # I just stole the rest of this code so don't ask me questions about it
       - name: Commit and push if content changed
