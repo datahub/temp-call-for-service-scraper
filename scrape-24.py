@@ -30,4 +30,4 @@ for single_date in date_range:
 df_24 = df_24.drop_duplicates(subset=['Time', 'Location', 'Nature', 'date'])
 
 print("Exporting to CSV:")
-df_24.to_csv("rnc-calls.csv", index = False)
+df_24.to_csv("2024-calls.csv", index = False)
